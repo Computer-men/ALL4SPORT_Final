@@ -27,6 +27,7 @@
         </activity>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".MainLoca"/>
+        <activity android:name=".HomeActivity"/>
     </application>
 
 </manifest>

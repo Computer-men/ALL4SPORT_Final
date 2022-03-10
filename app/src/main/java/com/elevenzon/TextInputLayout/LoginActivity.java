@@ -47,28 +47,13 @@ public class LoginActivity extends AppCompatActivity {
         emailError = (TextInputLayout) findViewById(R.id.emailError);
         passError = (TextInputLayout) findViewById(R.id.passError);
         verif = (TextView) findViewById(R.id.test);
-        QR = (Button) findViewById(R.id.QR);
-        Loca = (Button) findViewById(R.id.Loca);
-
-        Loca.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainLoca.class);
-                startActivity(intent);
-            }
-        });
-
-        QR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isNetworkAvailable()) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+                /*if (isNetworkAvailable()) {
                     verif.setText("Connecté");
                         URL url;
                         try {
@@ -87,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     verif.setText("Non connecté");
                 }
-                SetValidation();
+                SetValidation();*/
             }
         });
 
