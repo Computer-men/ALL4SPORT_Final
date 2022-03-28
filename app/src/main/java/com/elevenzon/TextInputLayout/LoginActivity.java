@@ -6,7 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,9 +41,9 @@ public class LoginActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-        login = (Button) findViewById(R.id.login);
+        email = (EditText) findViewById(R.id.qte);
+        password = (EditText) findViewById(R.id.ref);
+        login = (Button) findViewById(R.id.add);
         register = (TextView) findViewById(R.id.register);
         emailError = (TextInputLayout) findViewById(R.id.emailError);
         passError = (TextInputLayout) findViewById(R.id.passError);
@@ -56,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 verif.setText("En attente");
-
                 if (isNetworkAvailable())
                 {
                     recupmail = email.getText().toString();
@@ -68,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                     URL url;
                     try {
                         // Il faut changer l'url selon l'adresse IP
-                        url = new URL("http://192.168.159.2/all4sport-master/API/index.php/?email="+recupmail+"&password="+recupmdp);
+                        url = new URL("http://192.168.239.2/ALL4SPORT-master/API/connexion.php/?email="+recupmail+"&password="+recupmdp);
                         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                         BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
                         line = rd.readLine();
@@ -82,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     verif.setText("Non connecté");
                 }
 
-                if (line.equals("reussite")) {
+                if (line.equals("réussie")) {
                     Intent i = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(i);
                 } else if (line.equals("echec")) {
