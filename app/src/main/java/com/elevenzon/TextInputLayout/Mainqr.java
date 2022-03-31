@@ -24,6 +24,8 @@ public class Mainqr extends AppCompatActivity implements View.OnClickListener {
     Button scanBtn ;
     String line;
     String produit;
+    String villeActuelle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,10 @@ public class Mainqr extends AppCompatActivity implements View.OnClickListener {
 
         scanBtn = findViewById(R.id.scanBtn);
         scanBtn.setOnClickListener(this);
+        Bundle bundle = getIntent().getExtras();
+
+        villeActuelle = (String) getIntent().getSerializableExtra("villeActuelle");
+        System.out.println(villeActuelle);
 
     }
 
@@ -59,11 +65,11 @@ public class Mainqr extends AppCompatActivity implements View.OnClickListener {
                 // Connexion BDD
                 URL url;
                 try {
-                url = new URL("http://192.168.239.2/ALL4SPORT-master/API/produit.php/?produit="+produit);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                line = rd.readLine();
-                System.out.println(line);}
+                    url = new URL("http://192.168.92.2/ALL4SPORT_API-master/API/produit.php/?produit="+produit);
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                    BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    line = rd.readLine();
+                    System.out.println(line);}
                 catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -81,7 +87,12 @@ public class Mainqr extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         Intent i = new Intent(getApplicationContext(), AddProduitActivity.class);
-                        i.putExtra("produit", produit);
+                        Bundle extras = new Bundle();
+                        extras.putString("produit",produit);
+                        if (villeActuelle != null) {
+                            extras.putString("villeActuelle", villeActuelle);
+                        }
+                        i.putExtras(extras);
                         startActivity(i);
 
                         // finish();
