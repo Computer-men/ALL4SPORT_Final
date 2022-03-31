@@ -58,30 +58,24 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("test1");
         setContentView(R.layout.activity_home);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        System.out.println("test2");
 
         QR = (Button) findViewById(R.id.QR);
-        System.out.println("test3");
-        Loca = (Button) findViewById(R.id.Loca);System.out.println("test4");
-        add_id = (Button) findViewById(R.id.add_item);System.out.println("test5");
-        tv_presenceEntrepot = (TextView) findViewById(R.id.tv_presenceEntrepot);System.out.println("test6");
-        tv_valeurVilleActuelleAffichage = (TextView) findViewById(R.id.tv_valeurVilleActuelleAffichage);System.out.println("test7");
+        Loca = (Button) findViewById(R.id.Loca);
+        add_id = (Button) findViewById(R.id.add_item);
+        tv_presenceEntrepot = (TextView) findViewById(R.id.tv_presenceEntrepot);
+        tv_valeurVilleActuelleAffichage = (TextView) findViewById(R.id.tv_valeurVilleActuelleAffichage);
 
         locationRequest = LocationRequest.create()
                 .setInterval(100)
                 .setFastestInterval(3000)
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .setMaxWaitTime(100);
-        System.out.println("test8");
         locationRequest.setInterval(DEFAULT_UPDATE_INTERVAL * 1000);
-        System.out.println("test9");
         locationRequest.setFastestInterval(FAST_UPDATE_INTERVAL * 1000);
-        System.out.println("test10");
-        locationRequest.setPriority(locationRequest.PRIORITY_BALANCED_POWER_ACCURACY);System.out.println("test11");
+        locationRequest.setPriority(locationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         locationCallBack = new LocationCallback() {
 
@@ -90,15 +84,14 @@ public class HomeActivity extends AppCompatActivity {
                 super.onLocationResult(locationResult);
             }
         };
-        System.out.println("test12");
-
+        
         Loca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainLoca.class);
                 startActivity(intent);
             }
-        });System.out.println("test13");
+        });
 
         QR.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +105,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        System.out.println("test14");
 
         add_id.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,19 +113,15 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        System.out.println("test15");
         startLocationUpdates();
-        System.out.println("test16");
     }
 
     private void startLocationUpdates() {
-        System.out.println("testEUH1");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            System.out.println("testEUH2");
+
             return;
         }
-        System.out.println("testEUH3");
-        updateGPS();System.out.println("testEUH4");
+        updateGPS();
     }
 
     private void updateGPS() {
